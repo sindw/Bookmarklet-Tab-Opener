@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmarklet Tab Opener",
+  "version": "1.2",
+  "description": "输入多个网址，一键生成可批量打开的 JavaScript 书签。",
+  "permissions": ["bookmarks", "windows", "tabs"],
+  "action": {
+    "default_title": "打开网页组书签生成器"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon.jpg"
+  }
+}

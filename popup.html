@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>网页组书签生成器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h2>生成网页组书签</h2>
+    
+    <!-- 搜索和展开按钮 -->
+    <div class="option-group" style="margin-bottom: 16px; background: #eef2f7; border-color: #cbd5e1;">
+      <label style="margin-bottom: 6px;">读取已有书签进行修改</label>
+      <div class="search-wrapper">
+        <div class="search-input-group">
+          <input id="bookmarkSearch" type="text" placeholder="搜索书签名称或点击右侧查看全部..." autocomplete="off">
+          <button id="toggleListBtn" type="button" title="展开/收起全部书签">▼</button>
+        </div>
+        <div id="bookmarkList" class="dropdown-list hidden"></div>
+      </div>
+    </div>
+
+    <label>
+      书签名称
+      <input id="nameInput" type="text" placeholder="例如：工作台" required>
+    </label>
+
+    <label>
+      网址列表（每行一个）
+      <textarea id="urlsInput" rows="5" placeholder="https://www.example.com&#10;https://example.org"></textarea>
+    </label>
+    
+    <p class="hint error-hint" style="margin-top: -8px; margin-bottom: 12px;">
+      注意：书签 URL 有长度上限（约2000字符），填写过多会导致添加失败。
+    </p>
+
+    <div class="option-group">
+      <label class="checkbox-label">
+        <input id="prefixToggle" type="checkbox" checked>
+        添加书签前缀
+        <input id="prefixInput" type="text" value="▶ " style="width: 70px; padding: 2px 4px; margin: 0 4px;" maxlength="10">
+      </label>
+    </div>
+
+    <div class="option-group">
+      <label class="checkbox-label">
+        <input id="delayInput" type="checkbox">
+        开启防拦截延迟，间隔
+        <input id="delayTimeInput" type="number" min="100" step="100" value="500" style="width: 70px; padding: 2px 4px; margin: 0 4px;"> 毫秒
+      </label>
+      <p class="hint">提示：若点击书签后网页未全部打开，请在地址栏右侧允许此网站的弹窗。</p>
+    </div>
+
+    <div class="option-group">
+      <label class="checkbox-label">
+        <input id="shortenInput" type="checkbox">
+        自动缩写网址（去除 https://、www. 和末尾的 /）
+      </label>
+      <p class="hint error-hint">注意：缩写可能导致极少数特定网页无法精确跳转（默认关闭，建议保持关闭）。</p>
+    </div>
+
+    <button id="generateBtn">生成并保存到书签栏</button>
+    <p id="message" class="message"></p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
